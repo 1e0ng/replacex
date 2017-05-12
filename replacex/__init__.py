@@ -37,6 +37,6 @@ def main():
     path = os.getcwd()
     from_regex = sys.argv[1]
     to_regex = sys.argv[2]
-    filename_regex = r'.(h|m|mm|md|cpp|inl|def|txt|php|tpl|css|js|py|go)$' if nums == 3 else sys.argv[3]
+    filename_regex = r'^[^.].*\.(h|m|mm|md|cpp|inl|def|txt|php|tpl|css|js|py|go)$' if nums == 3 else sys.argv[3]
 
     rep_folder(path, from_regex, to_regex, filename_regex)
