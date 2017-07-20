@@ -6,9 +6,8 @@ import sys
 def replace(infile, outfile, from_re, to_re):
     f1 = open(infile)
     f0 = open(outfile, 'w')
-    data = f1.readlines()
-    for line in data:
-        f0.write(re.sub(from_re, to_re, line))
+    data = f1.read()
+    f0.write(re.sub(from_re, to_re, data, flags=re.M))
     f1.close()
     f0.close()
 
