@@ -3,29 +3,29 @@ import os
 import re
 import sys
 
-def replace(infile, outfile, from_re, to_re):
-    f1 = open(infile)
-    f0 = open(outfile, 'w')
-    data = f1.read()
-    f0.write(re.sub(from_re, to_re, data, flags=re.M))
-    f1.close()
-    f0.close()
+def replace(filename, original, updated):
+    print("%s" % filename)
+
+    fo = open(filename + ".bk", 'w')
+    fo.write(original)
+    fo.close()
+
+    fi = open(filename, 'w')
+    fi.write(updated)
+    fi.close()
+
+    os.remove(filename + ".bk")
 
 def rep_folder(path, from_re, to_re, file_re):
     print("Current Path: %s" % path)
     for dirpath, dirs, files in os.walk(path):
         for filename in files:
             if re.search(file_re, filename):
-                print("> %s ..." % filename)
-                fi = open(os.path.join(dirpath, filename))
-                fo = open(os.path.join(dirpath, filename + ".bk"), 'w')
-                fo.write(fi.read())
-                fo.close()
-                fi.close()
-                replace(os.path.join(dirpath, filename + ".bk"),
-                          os.path.join(dirpath, filename), from_re, to_re)
-                print("Done.")
-                os.remove(os.path.join(dirpath, filename + ".bk"))
+                infile = os.path.join(dirpath, filename)
+                original = open(infile).read()
+                updated = re.sub(from_re, to_re, original, flags=re.M)
+                if updated != original:
+                    replace(infile, original, updated)
 
 def main():
     nums = len(sys.argv)
