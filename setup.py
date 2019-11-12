@@ -2,7 +2,7 @@ from setuptools import setup
 
 setup(
     name="replacex",
-    version="1.2.0",
+    version="1.3.0",
     license='MIT',
     description="Replace string (regular expression) for files in current folder",
     author='1e0n',
