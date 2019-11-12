@@ -1,5 +1,5 @@
 # replacex
-Replace string with regular expression for all files in current folder.
+replacex is a convenient command shell tool to replace strings with regular expression for all files or specified files filtered by regular expression in current folder.
 
 
 ## Usage
